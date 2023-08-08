@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Users</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header th:insert="~{/header :: header}"></header>
+
+      <table>
+          <thead>
+            <th>UID</th>
+            <th>Username</th>
+            <th>Password</th>
+          </thead>
+          <tbody>
+            <tr th:each="user : ${users}">
+                <td>
+                    <span th:text="${user.id}">Text</span>
+                </td>
+                <td>
+                    <span th:text="${user.username}">Text</span>
+                </td>
+                <td>
+                    <span th:text="${user.password}">Text</span>
+                </td>
+            </tr>
+          </tbody>
+
+      </table>
+
+        <form th:action="@{/users}" th:method="POST" th:object="${user}">
+            <input type="text" id="username" name="username" required><br>
+            <input type="text" id="password" name="password" required><br>
+            <input type="submit" value="Submit" id="subbtn" name="subbtn">
+        </form>
+
+        <footer th:insert="~{/footer :: footer}"></footer>
+    </body>
+</html>

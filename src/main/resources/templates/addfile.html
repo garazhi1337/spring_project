@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add file</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header th:insert="~{/header :: header}"></header>
+
+    <table>
+        <thead>
+            <th>UUID</th>
+            <th>Filename</th>
+            <th>Size</th>
+            <th>Download</th>
+        </thead>
+        <tbody>
+            <tr th:each="file : ${files}">
+                <td>
+                    <span th:text="${file.id}">UUID</span>
+                </td>
+
+                <td>
+                    <span th:text="${file.name}">Filename</span>
+                </td>
+
+                <td>
+                    <span th:text="${file.size}">Size</span>
+                </td>
+
+                <td>
+                    <a th:href="${file.id}">Download</a>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+
+    <form th:method="POST" th:object="${file}" th:action="@{/addfile}" enctype="multipart/form-data">
+
+        <input type="file" name="addfile" id="addfile" value="Add file" required><br>
+        <input type="submit" name="savefile" value="Save file" id="savefile">
+
+    </form>
+
+    <footer th:insert="~{/footer :: footer}"></footer>
+</body>
+</html>
