@@ -18,6 +18,7 @@ public class UserService {
         UserEntity user = new UserEntity();
         user.setUsername(username);
         user.setPassword(new BCryptPasswordEncoder(12).encode(password));
+        user.setRole("USER");
 
         if (repo.findByUsername(user.getUsername()) != null) {
             throw new UserAlreadyExistsException();
