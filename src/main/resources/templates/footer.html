@@ -1,7 +1,7 @@
 <div id="footer" th:fragment="footer" xmlns:th="http://www.w3.org/1999/xhtml">
-    <b>
-        Онлайн: <a href="/online.php"><b style="color:#fb9e04">0</b></a>
-        <div style="padding:4px;margin-bottom:-4px"><a href="/profile.php?id=225584"><b style="color:#aaa">Мой профиль</b></a></div><div style="padding:4px;">
-        <a href="/main.php">Меню</a> | <a href="/forum">Форум</a> | <a href="/chat/">Чат</a> </div>
-    </b>
+    <div class="innerdivs" id="online">Онлайн: <a th:href="@{/online}" th:text="${session.size()}"> </a>
+        <div class="innerdivs" id="myprofile"><a href="/myprofile">Мой профиль</a>
+            <div class="innerdivs" id="bottomelems"><a href="/menu">Меню</a> | <a href="/forum">Форум</a> | <a href="/chat">Чат</a> </div>
+        </div>
+    </div>
 </div>

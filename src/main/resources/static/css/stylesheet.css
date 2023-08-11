@@ -1,3 +1,23 @@
 table, th, td {
   border: 1px solid black;
 }
+
+#footer{
+    display: flex;
+    justify-content: center;
+    padding:10px;
+}
+
+#headers {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#online, profile, bottomelems {
+    text-align: center;
+}
+
+.headeritem {
+    padding-right: 10px;
+}

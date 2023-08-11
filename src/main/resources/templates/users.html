@@ -23,6 +23,7 @@
           <thead>
             <th>UID</th>
             <th>Username</th>
+            <th>Role</th>
             <th>Password</th>
           </thead>
           <tbody>
@@ -32,6 +33,9 @@
                 </td>
                 <td>
                     <span th:text="${user.username}">Text</span>
+                </td>
+                <td>
+                    <span th:text="${user.role}">Text</span>
                 </td>
                 <td>
                     <span th:text="${user.password}">Text</span>

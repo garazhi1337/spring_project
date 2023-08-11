@@ -13,7 +13,6 @@ public class UserEntity {
     private Long id;
     private String username;
     private String password;
-    private String status;
     private String role;
 
     public UserEntity() {
@@ -41,14 +40,6 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getRole() {

@@ -48,4 +48,10 @@ public class MainController {
     public ResponseEntity<byte[]> getFile(@PathVariable("fileid") String id) {
         return fileService.downloadFile(id);
     }
+
+
+    @GetMapping("/myprofile")
+    public String myProfile() {
+        return "myprofile.html";
+    }
 }
