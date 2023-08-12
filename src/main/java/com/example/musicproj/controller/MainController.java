@@ -3,6 +3,7 @@ package com.example.musicproj.controller;
 import com.example.musicproj.entity.File;
 import com.example.musicproj.repository.FileRepository;
 import com.example.musicproj.service.FileService;
+import com.example.musicproj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ public class MainController {
 
     @Autowired
     private FileService fileService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private FileRepository fileRepository;
 
@@ -51,7 +54,8 @@ public class MainController {
 
 
     @GetMapping("/myprofile")
-    public String myProfile() {
+    public String myProfile(Model model) {
+
         return "myprofile.html";
     }
 }

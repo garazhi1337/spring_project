@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link type="text/css" href="/css/stylesheet.css" rel="stylesheet">
 </head>
 <body>
+    <header th:insert="/header :: header"></header>
     <div class="cat_bottom raius_down">
         <!-- Avatar & data -->
         <div class="rog pl-2">
@@ -41,5 +43,7 @@
         <b style="color:#f8af07">Последнее посещение:</b> <b style="font-size:0.9em">5 сек. назад</b><br>
 
     </div>
+
+    <footer th:insert="/footer :: footer"></footer>
 </body>
 </html>
