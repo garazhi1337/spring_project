@@ -1,10 +1,7 @@
 package com.example.musicproj.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "user")
 public class UserEntity {
@@ -14,6 +11,10 @@ public class UserEntity {
     private String username;
     private String password;
     private String role;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] content;
+    private long size;
 
     public UserEntity() {
     }
@@ -48,5 +49,21 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 }

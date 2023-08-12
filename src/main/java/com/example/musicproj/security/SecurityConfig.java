@@ -26,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/addfile").authenticated()
+                .antMatchers(HttpMethod.POST, "/myprofile").authenticated()
+                .antMatchers(HttpMethod.PUT, "/myprofile").authenticated()
                 .anyRequest().permitAll().and()
                 .formLogin().loginPage("/login").permitAll().and()
                 .logout().logoutUrl("/logout").permitAll();
