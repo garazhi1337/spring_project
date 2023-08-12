@@ -11,10 +11,17 @@ public class UserEntity {
     private String username;
     private String password;
     private String role;
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] content;
-    private long size;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pfp_id", referencedColumnName = "id")
+    private ProfilePicture profilePicture;
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(ProfilePicture profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public UserEntity() {
     }
@@ -51,19 +58,4 @@ public class UserEntity {
         this.role = role;
     }
 
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public long getSize() {
-        return size;
-    }
-
-    public void setSize(long size) {
-        this.size = size;
-    }
 }

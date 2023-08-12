@@ -1,18 +1,33 @@
 package com.example.musicproj.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity(name = "pfp")
 public class ProfilePicture {
 
     @Id
     @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] content;
     private long size;
+
+    @OneToOne(mappedBy = "profilePicture")
+    private UserEntity user;
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     public ProfilePicture() {
     }

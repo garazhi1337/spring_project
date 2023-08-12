@@ -1,6 +1,8 @@
 package com.example.musicproj.controller;
 
+import com.example.musicproj.repository.PfpRepository;
 import com.example.musicproj.repository.UserRepository;
+import com.example.musicproj.service.PfpService;
 import com.example.musicproj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
+    private PfpService pfpService;
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping(value = "/users")
@@ -27,10 +31,9 @@ public class UserController {
         }
     }
 
-    @PutMapping("/myprofile")
-    public String updateUserPfp(@RequestParam(value = "addfile") MultipartFile pfp) {
-        //return userService.updateUserPfp(pfp);
-        return "myprofile.html";
+    @PostMapping("/myprofile")
+    public String uploadPfp(@RequestParam(value = "addpic") MultipartFile pfp) {
+        return pfpService.uploadPfp(pfp);
     }
 
     @DeleteMapping(value = "/users/{id}")

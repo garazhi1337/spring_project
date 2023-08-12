@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,10 +36,10 @@ public class FileService {
     }
 
     public ResponseEntity<byte[]> downloadFile(String id) {
-        File file = fileRepository.findById(id);
+        Optional<File> file = fileRepository.findById(id);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName())
-                .body(file.getContent());
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.get().getName())
+                .body(file.get().getContent());
     }
 }

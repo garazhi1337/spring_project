@@ -4,10 +4,10 @@ import com.example.musicproj.entity.File;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import java.util.Optional;
 
 @Repository
-public interface FileRepository extends CrudRepository<File, Long> {
+public interface FileRepository extends CrudRepository<File, String> {
     File findByName(String name);
-    File findById(String id);
+    Optional<File> findById(String id);
 }

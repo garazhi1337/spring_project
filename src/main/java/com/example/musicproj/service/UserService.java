@@ -39,27 +39,4 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
-
-    public String updateUserPfp(MultipartFile pfp) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        UserEntity user = userRepository.findByUsername(username);
-
-        try {
-            user.setContent(pfp.getBytes());
-            user.setSize(pfp.getBytes().length);
-
-            String[] filenameSplit = pfp.getName().split("");
-            System.out.println(filenameSplit[filenameSplit.length-3] + filenameSplit[filenameSplit.length-2] + filenameSplit[filenameSplit.length-1]);
-            if ((filenameSplit[filenameSplit.length-3] + filenameSplit[filenameSplit.length-2] + filenameSplit[filenameSplit.length-1]).equals("jpg")) {
-                userRepository.save(user);
-            } else {
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "redirect:/myprofile";
-    }
 }
