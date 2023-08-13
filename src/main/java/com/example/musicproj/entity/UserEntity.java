@@ -11,6 +11,9 @@ public class UserEntity {
     private String username;
     private String password;
     private String role;
+    private String name;
+    private String info;
+    private String regDate;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pfp_id", referencedColumnName = "id")
     private ProfilePicture profilePicture;

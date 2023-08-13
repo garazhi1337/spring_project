@@ -2,7 +2,9 @@ package com.example.musicproj.controller;
 
 import com.example.musicproj.entity.File;
 import com.example.musicproj.repository.FileRepository;
+import com.example.musicproj.repository.UserRepository;
 import com.example.musicproj.service.FileService;
+import com.example.musicproj.service.PfpService;
 import com.example.musicproj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +26,10 @@ public class MainController {
     private UserService userService;
     @Autowired
     private FileRepository fileRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PfpService pfpService;
 
     @RequestMapping("/")
     public String home() {
@@ -57,5 +63,31 @@ public class MainController {
     public String myProfile(Model model) {
         userService.addUserPfpToModel(model);
         return "myprofile.html";
+    }
+
+    @PostMapping(value = "/users")
+    public String registration(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
+        try {
+            userService.registration(username, password);
+            return "redirect:/users";
+        } catch (Exception e) {
+            return "redirect:/users";
+        }
+    }
+
+    @PostMapping(value = "/myprofile")
+    public String uploadPfp(@RequestParam(value = "addpic") MultipartFile pfp) {
+        return pfpService.uploadPfp(pfp);
+    }
+
+    @RequestMapping(value = "/users")
+    public String users(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "users.html";
+    }
+
+    @GetMapping(value = "/editprofile")
+    public String editProfile(Model model) {
+        return "/editprofile.html";
     }
 }
