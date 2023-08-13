@@ -19,6 +19,7 @@
 
       <header th:insert="~{/header :: header}"></header>
 
+      <!--
       <table>
           <thead>
             <th>UID</th>
@@ -45,10 +46,14 @@
 
       </table>
 
+      -->
+
+        <h2>Регистрация</h2>
+
         <form th:action="@{/users}" th:method="POST" th:object="${user}">
-            <input type="text" id="username" name="username" required><br>
-            <input type="text" id="password" name="password" required><br>
-            <input type="submit" value="Submit" id="subbtn" name="subbtn">
+            <span> Имя пользователя: <input type="text" id="username" name="username" required><br></span>
+            <span>Пароль: <input type="text" id="password" name="password" required><br></span>
+            <input type="submit" value="Зарегаца" id="subbtn" name="subbtn">
         </form>
 
         <footer th:insert="~{/footer :: footer}"></footer>

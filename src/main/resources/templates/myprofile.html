@@ -13,12 +13,12 @@
 
             <!-- Avatar -->
             <div class="col-auto">
-                <img src="/avatars/avatar.jpg" style="" class="radius"><br>
+                <img th:src="${pfp}" width="128px" height="128px">
             </div>
 
             <form th:method="POST" th:object="${file}" th:action="@{/myprofile}" enctype="multipart/form-data">
 
-                <input type="file" name="addpic" id="addpic" value="Добавить фото" required><br>
+                <input type="file" name="addpic" id="addpic" value="Добавить фото профиля" required><br>
                 <input type="submit" name="savepic" value="Сохранить фото" id="savepic">
 
             </form>

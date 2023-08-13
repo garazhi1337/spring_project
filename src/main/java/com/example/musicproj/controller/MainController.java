@@ -55,7 +55,7 @@ public class MainController {
 
     @GetMapping("/myprofile")
     public String myProfile(Model model) {
-
+        userService.addUserPfpToModel(model);
         return "myprofile.html";
     }
 }
