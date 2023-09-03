@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/addfile").authenticated()
                 .antMatchers(HttpMethod.POST, "/myprofile").authenticated()
-                .antMatchers(HttpMethod.PUT, "/myprofile").authenticated()
+                .antMatchers(HttpMethod.POST, "/editprofile").authenticated()
                 .anyRequest().permitAll().and()
                 .formLogin().loginPage("/login").permitAll().and()
                 .logout().logoutUrl("/logout").permitAll();

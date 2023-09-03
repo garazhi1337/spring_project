@@ -1,6 +1,7 @@
 package com.example.musicproj.controller;
 
 import com.example.musicproj.entity.File;
+import com.example.musicproj.entity.UserEntity;
 import com.example.musicproj.repository.FileRepository;
 import com.example.musicproj.repository.UserRepository;
 import com.example.musicproj.service.FileService;
@@ -9,6 +10,8 @@ import com.example.musicproj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +62,8 @@ public class MainController {
     }
 
 
-    @GetMapping("/myprofile")
-    public String myProfile(Model model) {
+    @GetMapping("/myprofile/{id}")
+    public String myProfile(Model model, @PathVariable("id") Long id) {
         userService.addUserPfpToModel(model);
         return "myprofile.html";
     }
@@ -75,11 +78,6 @@ public class MainController {
         }
     }
 
-    @PostMapping(value = "/myprofile")
-    public String uploadPfp(@RequestParam(value = "addpic") MultipartFile pfp) {
-        return pfpService.uploadPfp(pfp);
-    }
-
     @RequestMapping(value = "/users")
     public String users(Model model) {
         model.addAttribute("users", userRepository.findAll());
@@ -88,6 +86,15 @@ public class MainController {
 
     @GetMapping(value = "/editprofile")
     public String editProfile(Model model) {
+        UserEntity user = userRepository.findByUsername(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+        userService.addUserPfpToModel(model);
+        model.addAttribute("current", user);
+
         return "/editprofile.html";
+    }
+
+    @PostMapping(value = "/editprofile")
+    public String uploadPfp(@RequestParam(value = "addpic") MultipartFile pfp) {
+        return pfpService.uploadPfp(pfp);
     }
 }

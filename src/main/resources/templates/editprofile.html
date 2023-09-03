@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Редактировать профиль</title>
+    <link type="text/css" rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
+    <header th:insert="/header :: header"></header>
+    <div>
+        <!-- Avatar & data -->
+        <div>
 
+            <!-- Avatar -->
+            <div>
+                <img th:src="${pfp}" width="128px" height="128px">
+            </div>
+
+            <form th:method="POST" th:object="${file}" th:action="@{/editprofile}" enctype="multipart/form-data">
+
+                <input type="file" name="addpic" id="addpic" value="Добавить фото профиля" required><br>
+                <input type="submit" name="savepic" value="Сохранить фото" id="savepic">
+
+            </form>
+
+            <!-- Data -->
+            <center>- - - Данные - - -</center>
+
+            <div>
+                <form th:action="@{/editprofile}" th:method="POST">
+                    <span>ID: </span><span th:text="${current.id}"></span><br>
+                    <span>Позывной: </span><input type="text" id="username" name="username" th:value="${current.username}"><br>
+                    <span>Имя: </span><input type="text" id="name" name="name" th:value="${current.name}"><br>
+                    <span>О себе: </span><input type="text" id="info" name="info" th:value="${current.info}"><br>
+                    <span>Дата регистрации: </span><br>
+                    <span>Последнее посещение: </span><br>
+                    <input type="submit" value="Сохранить"></input>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <footer th:insert="/footer :: footer"></footer>
 </body>
 </html>

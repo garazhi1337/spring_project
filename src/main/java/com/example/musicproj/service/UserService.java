@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.Base64;
+import java.util.Date;
 
 @Service
 public class UserService {
@@ -25,6 +25,7 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(new BCryptPasswordEncoder(12).encode(password));
         user.setRole("USER");
+        user.setRegDate(new Date().toString());
 
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new UserAlreadyExistsException();
@@ -44,9 +45,16 @@ public class UserService {
     }
 
     public void addUserPfpToModel(Model model) {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserEntity userEntity = userRepository.findByUsername(userDetails.getUsername());
-        String photo = "data:image/jpg;base64," + Base64.getEncoder().encodeToString(userEntity.getProfilePicture().getContent());
-        model.addAttribute("pfp", photo);
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserEntity userEntity = userRepository.findByUsername(userDetails.getUsername());
+            if (userEntity.getProfilePicture() != null) {
+                String photo = "data:image/jpg;base64," + Base64.getEncoder().encodeToString(userEntity.getProfilePicture().getContent());
+                model.addAttribute("pfp", photo);
+            }
+        } else {
+
+        }
     }
 }

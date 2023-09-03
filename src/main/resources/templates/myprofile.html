@@ -7,41 +7,27 @@
 </head>
 <body>
     <header th:insert="/header :: header"></header>
-    <div class="cat_bottom raius_down">
+    <div>
         <!-- Avatar & data -->
-        <div class="rog pl-2">
+        <div>
 
             <!-- Avatar -->
-            <div class="col-auto">
+            <div>
+                <span>Позывной:</span><br>
+                <span>ID:</span><br>
                 <img th:src="${pfp}" width="128px" height="128px">
             </div>
 
-            <form th:method="POST" th:object="${file}" th:action="@{/myprofile}" enctype="multipart/form-data">
-
-                <input type="file" name="addpic" id="addpic" value="Добавить фото профиля" required><br>
-                <input type="submit" name="savepic" value="Сохранить фото" id="savepic">
-
-            </form>
-
             <!-- Data -->
-            <div class="col pl-4 text-shadow">
-                <div>
-                    <b class="text-orange">Позывной:</b> thymeleaf<br>
-                    <div>
-                        <b class="text-orange">ID:</b> 225584<br>
-                    </div>
-                </div>
+            <center>- - - Данные - - -</center>
+
+            <div>
+                <span>Имя:</span><br>
+                <span>О себе:</span> <br>
+                <span>Регистрация PDA:</span><br>
+                <span>Последнее посещение:</span><br>
             </div>
         </div>
-
-        <center>- - - Данные - - -</center><div class="separ">
-    </div>
-
-        <b style="color:#f8af07">Имя:</b> <b>-</b><br>
-        <b style="color:#f8af07;"> О себе:</b> <b>нет информации</b><br>
-        <b style="color:#f8af07">Регистрация PDA:</b> <b style="font-size:0.9em">8 Авг 2023 в 09:30</b><br>
-        <b style="color:#f8af07">Последнее посещение:</b> <b style="font-size:0.9em">5 сек. назад</b><br>
-
     </div>
 
     <footer th:insert="/footer :: footer"></footer>
